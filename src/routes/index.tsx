@@ -1200,7 +1200,7 @@ const slots = generateSlots();
   return (
     <section id="visit" className="relative py-20 md:py-28">
       <div className="container-luxe grid gap-10 md:grid-cols-12 md:gap-14">
-        <div className="md:col-span-5 flex flex-col">
+        <div className="min-w-0 md:col-span-5 flex flex-col">
           <Reveal>
             <Eyebrow>Visit Dentalys</Eyebrow>
           </Reveal>
@@ -1239,7 +1239,7 @@ const slots = generateSlots();
           </Reveal>
         </div>
 
-        <div id="consult" className="md:col-span-7">
+        <div id="consult" className="min-w-0 md:col-span-7">
           <Reveal delay={150}>
             <div className="relative overflow-hidden rounded-[28px] border border-border/60 bg-cream p-7 shadow-(--shadow-soft) md:p-10">
               <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full"
