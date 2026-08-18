@@ -7,6 +7,7 @@ import {
   Activity,
   ArrowRight,
   ArrowDown,
+  ArrowUp,
   ArrowUpRight,
   CalendarDays,
   ChevronLeft,
@@ -34,6 +35,8 @@ import receptionDesk from "@/assets/clinic/reception-desk.jpg";
 import dentalysOverview from "@/assets/clinic/dentalys-overview.mp4";
 import treatmentcare from "@/assets/clinic/treatment-care.jpg";
 import treatmentCare from "@/assets/clinic/treatment-care.jpg";
+import collage from "@/assets/clinic/collage-dentalys.jpg";
+import collageDesktop from "@/assets/clinic/web-collage.jpg";
 import dentalysLogo from "@/assets/clinic/dentalys logo + text.png";
 import pediatricCare from "@/assets/clinic/pediatric-care.jpg";
 import drTreating from "@/assets/clinic/dr-treating.jpg";
@@ -51,6 +54,7 @@ import drNeha from "@/assets/clinic/dr-neha.jpg";
 import drTanya from "@/assets/clinic/dr-tanya.jpg";
 import drMukul from "@/assets/clinic/dr-mukul.jpg";
 import drSaurabh from "@/assets/clinic/dr-saurabh.jpg";
+import { Arrow } from "@radix-ui/react-context-menu";
 
 /* ---------- Tiny presentational helpers ---------- */
 
@@ -135,9 +139,10 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-function Hero() {
+function Hero({ heroRef }: { heroRef: React.RefObject<HTMLElement | null> }) {
   return (
   <section
+    ref={heroRef}
     id="hero"
     className="relative flex min-h-[auto] items-start overflow-hidden bg-sand lg:min-h-screen lg:items-center"
   >
@@ -272,14 +277,14 @@ function Hero() {
                 </PrimaryCta>
                 <div className="mt-4 text-sm tracking-wide text-muted-foreground md:text-base">
                   <a
-                    href="tel:+919999999999"
+                    href="tel:+919077790772"
                     className="transition-colors hover:text-foreground"
                   >
                     Call us
                   </a>
                   <span className="mx-2">•</span>
                   <a
-                    href="https://wa.me/919999999999"
+                    href="https://wa.me/919077790772"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-colors hover:text-foreground"
@@ -694,7 +699,7 @@ onClick={() =>
       ? DENTISTS.length - 1
       : active - 1
   )
-}  className="absolute left-6 top-1/2 z-30 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-border/60 bg-white/90 backdrop-blur-sm shadow-[0_8px_24px_rgba(62,48,36,0.08)] lg:grid"
+}  className="absolute left-4 top-1/2 z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-border/60 bg-cream/90 shadow-[0_8px_24px_rgba(62,48,36,0.08)] lg:left-6 lg:h-12 lg:w-12"
 >
   <ChevronLeft className="h-5 w-5" />
 </button>
@@ -707,7 +712,7 @@ onClick={() =>
       ? 0
       : active + 1
   )
-}  className="absolute right-6 top-1/2 z-30 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-border/60 bg-white/90 backdrop-blur-sm shadow-[0_8px_24px_rgba(62,48,36,0.08)] lg:grid"
+}  className="absolute right-4 top-1/2 z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-border/60 bg-cream/90 shadow-[0_8px_24px_rgba(62,48,36,0.08)] lg:right-6 lg:h-12 lg:w-12"
 >
   <ChevronRight className="h-5 w-5" />
 </button>
@@ -1079,7 +1084,7 @@ function WhatsAppBlock() {
           </div>
           <div className="md:col-span-5 flex md:justify-end">
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919077790772"
               target="_blank"
               rel="noreferrer"
               className="group inline-flex items-center gap-3 rounded-full bg-[oklch(0.62_0.14_150)] px-7 py-4 text-base text-cream shadow-[0_20px_60px_-20px_oklch(0.62_0.14_150/0.6)] transition hover:opacity-95"
@@ -1230,15 +1235,26 @@ const slots = generateSlots();
           <Reveal delay={220}>
             <div className="mt-8 space-y-5 text-sm">
               <InfoRow icon={<MapPin className="h-4 w-4 text-accent" />} title="Address">
-                D-72, Sector — Faridabad, Haryana
+               <a
+                href="https://maps.app.goo.gl/1hUmrTF6efsKpu8a9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent transition-colors"
+                 >
+                D-72, Sector 85, Faridabad, Haryana <ArrowUpRight className="h-4 w-4" />
+                </a>
               </InfoRow>
               <InfoRow icon={<Clock className="h-4 w-4 text-accent" />} title="Hours">
-                Mon — Sat · 10:00 — 20:00
+                Mon — Wed · 10:00 — 20:00
                 <br />
-                Sunday · By appointment
+                Thu  ·  Closed
+                <br />
+                Fri — Sat   ·   10:00 — 20:00
+                <br />
+                Sun · 10:00 — 14:00
               </InfoRow>
               <InfoRow icon={<Phone className="h-4 w-4 text-accent" />} title="Reception">
-                +91 99999 99999
+                +91 90777 90772 
               </InfoRow>
             </div>
           </Reveal>
@@ -1512,8 +1528,8 @@ function Footer() {
           <div className="md:col-span-4">
             <div className="eyebrow">Contact</div>
             <ul className="mt-4 space-y-2 text-sm text-foreground">
-              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-accent" /> D-72, Faridabad, Haryana</li>
-              <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 text-accent" /> +91 99999 99999</li>
+              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-accent" /> D-72, Sector 85, Faridabad, Haryana </li>
+              <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 text-accent" /> +91 90777 90772</li>
               <li className="flex items-start gap-2"><Clock className="mt-0.5 h-4 w-4 text-accent" /> Mon — Sat · 10:00 — 20:00</li>
             </ul>
             <a
@@ -1536,44 +1552,76 @@ function Footer() {
 /* --- Page --- */
 
 function HomePage() {
+  const heroRef = useRef<HTMLElement>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowScrollTop(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <main>
-        <Hero />
+        <Hero heroRef={heroRef} />
         <div className="relative">
           <CapabilityRail />
         </div>
         <Philosophy />
         <Treatments />
 {/* Architectural divider image strip */}
-<section aria-hidden className="max-w-[1180px] mx-auto relative">
+<section aria-hidden className="w-full">
   <div className="container-luxe">
-    <div className="overflow-hidden rounded-[24px] border border-border/60 bg-cream">
+<div className="mx-auto w-full md:max-w-[1000px] overflow-hidden rounded-[24px] border border-border/60 bg-cream">
+      {/* Mobile: existing 4:5 collage */}
       <img
-  src={treatmentcare}
-  alt=""
-  className="
-    h-[320px]
-    w-full
-    max-w-[420px]
+        src={collage}
+        alt="Dentalys clinic interiors"
+        className="
+          block
+          w-full
+          h-auto
+          object-contain
+          opacity-[0.96]
+          transition-all
+          duration-700
+          ease-out
+          hover:scale-[1.01]
+          hover:opacity-100
+          md:hidden
+        "
+        loading="lazy"
+      />
 
-    rounded-[2rem]
+      {/* Desktop: new 5:4 collage */}
+      <img
+        src={collageDesktop}
+        alt="Dentalys clinic interiors"
+        className="
+          hidden
+          w-full
+          h-auto
+          object-contain
+          opacity-[0.96]
+          transition-all
+          duration-700
+          ease-out
+          hover:scale-[1.01]
+          hover:opacity-100
+          md:block
+        "
+        loading="lazy"
+      />
 
-    object-cover
-    object-center
-
-    opacity-[0.96]
-
-    transition-all
-    duration-700
-    ease-out
-
-    hover:scale-[1.015]
-    hover:opacity-100
-  "
-  loading="lazy"
-/>
     </div>
   </div>
 </section>
@@ -1585,6 +1633,18 @@ function HomePage() {
         <Visit />
       </main>
       <Footer />
+      <button
+        type="button"
+        aria-label="Scroll to top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`fixed bottom-5 left-1/2 z-50 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full border border-border/70 bg-background/95 text-foreground shadow-lg backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+          showScrollTop
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-3 opacity-0"
+        }`}
+      >
+        <ArrowUp className="h-4 w-4" aria-hidden="true" />
+      </button>
     </div>
   );
 }
