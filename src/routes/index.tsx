@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Check } from "lucide-react";
-import Calendar from "react-calendar";
+import CalendarPicker from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import {
   Activity,
   ArrowRight,
   ArrowDown,
   ArrowUpRight,
+  CalendarDays,
   ChevronLeft,
   ChevronRight,
   Clock,
@@ -30,6 +31,7 @@ import ToothIcon from "@/components/icons/ToothIcon";
 
 import heroEditorial from "@/assets/clinic/clinic-hero-editorial.jpg";
 import receptionDesk from "@/assets/clinic/reception-desk.jpg";
+import dentalysOverview from "@/assets/clinic/dentalys-overview.mp4";
 import treatmentcare from "@/assets/clinic/treatment-care.jpg";
 import treatmentCare from "@/assets/clinic/treatment-care.jpg";
 import dentalysLogo from "@/assets/clinic/dentalys logo + text.png";
@@ -464,29 +466,29 @@ function Treatments() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-5 max-sm:grid-cols-2 max-sm:gap-x-3 max-sm:gap-y-[13px] md:grid-cols-2">
           {treatments.map((t) => (
             <article
               key={t.title}
-              className="group relative overflow-hidden rounded-[28px] border border-border/60 bg-linear-to-br from-cream via-[#f7f1e8] to-[#f2eadf] p-7 shadow-(--shadow-soft) transition-all duration-300 ease-out hover:-translate-y-[4px] hover:border-accent/20 hover:shadow-[0_24px_60px_-24px_rgba(0,0,0,0.18)] hover:bg-[oklch(0.955_0.018_82)]"
+              className="group relative overflow-hidden rounded-[28px] border border-border/60 bg-linear-to-br from-cream via-[#f7f1e8] to-[#f2eadf] p-7 shadow-(--shadow-soft) transition-all duration-300 ease-out hover:-translate-y-[4px] hover:border-accent/20 hover:shadow-[0_24px_60px_-24px_rgba(0,0,0,0.18)] hover:bg-[oklch(0.955_0.018_82)] max-sm:flex max-sm:flex-col max-sm:rounded-[22px] max-sm:border-border/45 max-sm:p-[17px]"
             >
               <div className="h-1 w-14 rounded-full bg-accent/70" />
               <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/5 blur-3xl" /> </div>
 
-              <h3 className="mt-5 font-display text-2xl text-foreground">
+              <h3 className="mt-5 font-display text-2xl text-foreground max-sm:mt-4 max-sm:text-[1.125rem] max-sm:leading-[1.1] max-sm:font-medium">
                 {t.title}
               </h3>
 
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground max-sm:text-[0.6875rem]">
                 {t.desc}
               </p>
 
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {t.items.map((item) => (
+              <ul className="mt-6 flex flex-wrap gap-2 max-sm:mt-auto max-sm:gap-1.5 max-sm:pt-5">
+                {t.items.slice(0, 2).map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-border bg-sand/45 backdrop-blur-sm px-3 py-1.5 text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground transition-all
+                    className="rounded-full border border-border bg-sand/45 backdrop-blur-sm px-3 py-1.5 text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground transition-all max-sm:border-border/70 max-sm:px-2 max-sm:py-1 max-sm:text-[0.56rem] max-sm:tracking-[0.08em]
 duration-300
 hover:bg-accent/8
 hover:border-accent/20
@@ -823,8 +825,9 @@ function InsideGallery() {
 
           {/* Main Feature */}
           <GalleryCard
-            img={heroEditorial}
-            title="Reception"
+            img={dentalysOverview}
+            video={dentalysOverview}
+            title="Inside Dentalys"
             desc="A warm welcome every time."
             className="col-span-12 md:col-span-7"
             height="h-[560px]"
@@ -885,12 +888,14 @@ function InsideGallery() {
 }
 function GalleryCard({
   img,
+  video,
   title,
   desc,
   className,
   height,
 }: {
   img: string;
+  video?: string;
   title: string;
   desc: string;
   className?: string;
@@ -901,13 +906,24 @@ function GalleryCard({
       className={`group relative overflow-hidden rounded-[2rem] ${className}`}
     >
       <div className="overflow-hidden">
-        <img
-          src={img}
-          alt={title}
-          className={`${height} w-full object-cover transition duration-[1600ms] ease-out group-hover:scale-[1.04]`}
-          loading="lazy"
-        />
-      </div>
+  {video ? (
+    <video
+      src={video}
+      autoPlay
+      muted
+      loop
+      playsInline
+      className={`${height} w-full object-cover`}
+    />
+  ) : (
+    <img
+      src={img}
+      alt={title}
+      className={`${height} w-full object-cover transition duration-[1600ms] ease-out group-hover:scale-[1.04]`}
+      loading="lazy"
+    />
+  )}
+</div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
@@ -1311,7 +1327,7 @@ const slots = generateSlots();
                   <label className="block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
                     Select Date
                   </label><div className="mt-3 overflow-hidden rounded-[24px] border border-border bg-background p-4">
-    <Calendar
+    <CalendarPicker
       onChange={(value) => setSelectedDate(value as Date)}
       value={selectedDate}
       minDate={new Date()}
@@ -1351,7 +1367,7 @@ const slots = generateSlots();
                     type="submit"
                     className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm text-accent-foreground transition hover:opacity-90"
                   >
-                    <Calendar className="h-4 w-4" />
+                    <CalendarDays className="h-4 w-4" />
                     Request consultation
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </button>
