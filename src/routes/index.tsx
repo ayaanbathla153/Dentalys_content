@@ -118,7 +118,16 @@ function GhostCta({ href, children }: { href: string; children: React.ReactNode 
     </a>
   );
 }
-
+const SectionDivider = () => (
+  <div
+    aria-hidden="true"
+    className="mx-auto mt-20 mb-22 h-[2px] w-38 md:mt-20 md:mb-15 md:w-[510px]"
+    style={{
+      background:
+        "linear-gradient(90deg, transparent, #5F7F63 30%, #5F7F63 70%, transparent)",
+    }}
+  />
+);
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -337,7 +346,7 @@ function Philosophy() {
     },
   ];
   return (
-    <section id="treatments" className="relative py-16 md:py-20">
+    <section id="philosophy" className="relative py-16 md:py-20">
       <div className="container-luxe grid items-start gap-10 md:grid-cols-12 md:gap-14">
         <div className="md:col-span-4">
           <Reveal>
@@ -366,11 +375,10 @@ function Philosophy() {
           </Reveal>
         </div>
 
-        <div className="md:col-span-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="md:col-span-8 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((c, i) => (
             <Reveal key={c.title} delay={120 + i * 80}>
-              <article className="premium-card-hover group relative overflow-hidden rounded-[24px] border border-border/60">
-                <div className="relative h-44 overflow-hidden">
+<article className="premium-card-hover group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-border/60">                <div className="relative h-44 overflow-hidden">
                   <img
                     src={c.img}
                     alt={c.title}
@@ -383,8 +391,8 @@ function Philosophy() {
                     style={{ background: "var(--gradient-sage)" }}
                   />
                 </div>
-                <div className="p-5">
-                  <h3 className="font-display text-lg text-foreground">{c.title}</h3>
+                <div className="flex flex-1 flex-col p-5">
+                    <h3 className="font-display text-lg text-foreground">{c.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
                 </div>
               </article>
@@ -1577,6 +1585,7 @@ function HomePage() {
           <CapabilityRail />
         </div>
         <Philosophy />
+        <SectionDivider />
         <Treatments />
 {/* Architectural divider image strip */}
 <section aria-hidden className="w-full">
@@ -1625,10 +1634,15 @@ function HomePage() {
     </div>
   </div>
 </section>
+        <SectionDivider />
         <Smiles />
+        <SectionDivider />
         <Dentists />
+        <SectionDivider />
         <InsideGallery />
-        <Voices />
+        <SectionDivider />
+        <Voices />       
+        <SectionDivider />
         <WhatsAppBlock />
         <Visit />
       </main>

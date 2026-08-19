@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import dentalysLogo from "@/assets/dentalys logo + text.png";
 
 const links = [
+  { href: "#philosophy", label: "Philosophy" },
   { href: "#treatments", label: "Treatments" },
   { href: "#smiles", label: "Smiles" },
   { href: "#dentists", label: "Our Dentists" },
