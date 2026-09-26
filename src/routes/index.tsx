@@ -551,8 +551,8 @@ function Smiles() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {cases.map((c, i) => (
             <Reveal key={c.label} delay={120 + i * 80}>
-              <figure className="premium-card-hover group relative overflow-hidden rounded-[29px] border border-border/60 shadow-(--shadow-soft)">
-                <div className="relative aspect-circle overflow-hidden bg-[#b28c75]">
+              <figure className="premium-card-hover group relative flex h-full flex-col overflow-hidden rounded-[29px] border border-border/60 shadow-(--shadow-soft)">
+  <div className="relative aspect-square shrink-0 overflow-hidden bg-[#b28c75]">
                   <img
                     src={c.img}
                     alt={c.label}
