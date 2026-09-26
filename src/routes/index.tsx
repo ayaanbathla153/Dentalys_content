@@ -882,20 +882,12 @@ function InsideGallery() {
 
         </div>
 
-        {/* Bottom Hint */}
-        <div className="mt-12 flex items-center justify-center gap-4 text-muted-foreground/40">
-
-          <div className="h-px w-12 bg-current" />
-
-          <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.28em]">
-            <ArrowDown className="h-3 w-3" />
-            Hover to explore
-          </span>
+        
 
           <div className="h-px w-12 bg-current" />
 
         </div>
-      </div>
+      
     </section>
   );
 }
@@ -950,30 +942,6 @@ function GalleryCard({
         </p>
       </div>
 
-      <div
-        className="
-          absolute
-          bottom-6
-          right-6
-          flex
-          h-11
-          w-11
-          items-center
-          justify-center
-          rounded-full
-          border
-          border-white/20
-          bg-white/5
-          text-white
-          opacity-0
-          backdrop-blur-md
-          transition-all
-          duration-500
-          group-hover:opacity-100
-        "
-      >
-        <ArrowRight className="h-4 w-4" />
-      </div>
     </div>
   );
 }

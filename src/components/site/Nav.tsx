@@ -74,9 +74,9 @@ export function Nav() {
       }`}
     >    
   
-      <div className="container-luxe flex h-[67px] items-center justify-between ">
+      <div className="container-luxe flex h-[69px] items-center justify-between ">
         <a href="#top" aria-label="Dentalys home" className="text-foreground max-md:-translate-x-7">
-          <img src={dentalysLogo} alt="Dentalys" className="h-[132px] w-auto-translate-y-[-6px]" />
+          <img src={dentalysLogo} alt="Dentalys" className="h-[142px] w-auto-translate-y-[-8px]" />
         </a>
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
